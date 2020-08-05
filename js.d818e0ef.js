@@ -2736,10 +2736,10 @@ const app = new _App.default({
     (0, _constants.$i)('menu-bars').addEventListener('click', toggleNav);
     (0, _constants.$i)('nav').addEventListener('click', toggleNav);
 
-    const loaderHandler = (e, el) => {
+    const loaderHandler = el => {
       const originalText = el.parentNode.childNodes[3].innerText;
-      el.hidden = false;
       const icon = el.parentElement.childNodes[1];
+      el.hidden = false;
       icon.style.visibility = 'hidden';
       el.parentNode.childNodes[3].innerText = 'Loading';
       setTimeout(() => {
@@ -2749,8 +2749,8 @@ const app = new _App.default({
       }, 2000);
     };
 
-    (0, _constants.$i)('login-btn').addEventListener('click', (e, el) => loaderHandler(e, (0, _constants.$i)('auth-btn-loader-login')));
-    (0, _constants.$i)('logout-btn').addEventListener('click', (e, el) => loaderHandler(e, (0, _constants.$i)('auth-btn-loader-logout')));
+    (0, _constants.$i)('login-btn').addEventListener('click', () => loaderHandler((0, _constants.$i)('auth-btn-loader-login')));
+    (0, _constants.$i)('logout-btn').addEventListener('click', () => loaderHandler((0, _constants.$i)('auth-btn-loader-logout')));
     overlay.hidden = false;
     self.registerComponent(new _ExampleComponent.default(app.store));
     self.registerPlayer(new _Player.Player(), _constants.$x);
@@ -2801,7 +2801,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50274" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51176" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
