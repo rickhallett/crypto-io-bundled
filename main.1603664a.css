@@ -53,20 +53,31 @@
 
 .ticker__input {
     width: 80%;
+    outline: none;
     border: none;
     border-radius: 5px 0 0 5px;
     height: 2rem;
     text-align: right;
     padding-right: 0.5rem;
     background-color: var(--color-primary-0);
+    color: var(--color-coin-green);
+}
+
+.ticker__input:focus {
+
 }
 
 .ticker__buy-btn {
+    outline: none;
     border: none;
     width: 20%;
     border-radius: 0 5px 5px 0;
+    transition: filter 300ms ease-in-out;
 }
 
+.ticker__buy-btn:hover {
+    filter: brightness(90%);
+}
 
 
 .inventory {
@@ -188,6 +199,48 @@
     width: 50%;
     border: 1px solid var(--color-computer-green);
     opacity: 0.3;
+}
+
+
+.auth-btn {
+    border: 1px solid var(--color-computer-green);
+    color: var(--color-computer-green);
+    outline: none;
+    padding: 0.4rem 1rem;
+    margin-bottom: 1rem;
+    background-color: transparent;
+    opacity: 1;
+    font-size: 1rem;
+
+    cursor: pointer;
+    display: flex;
+    justify-content: space-around;
+    width: 8rem;
+    transition: width 300ms ease-in-out;
+}
+
+#login-btn:hover {
+    border: 1px solid var(--color-primary-0);
+    color: var(--color-primary-0);
+}
+
+#login-btn:focus {
+    border: 1px solid var(--color-primary-0);
+    color: var(--color-primary-0);
+}
+
+#logout-btn:hover {
+    border: 1px solid var(--color-computer-red);
+    color: var(--color-computer-red);
+}
+
+#logout-btn:focus {
+    border: 1px solid var(--color-computer-red);
+    color: var(--color-computer-red);
+}
+
+.auth-btn-loader {
+    width: 22%;
 }
 @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300;400;600&display=swap');
 
@@ -464,9 +517,13 @@ section {
 }
 
 section#home {
-  background-image: url("chain.c47bbb12.jpg");
+  background-image: url("/chain.c47bbb12.jpg");
   background-size: cover;
   background-position: center center;
+}
+
+section#home h1 {
+  font-size: 2rem;
 }
 
 section#market {
@@ -504,4 +561,4 @@ section#settings {
 
 
 
-/*# sourceMappingURL=main.1603664a.css.map */
+/*# sourceMappingURL=/main.1603664a.css.map */

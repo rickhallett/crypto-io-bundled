@@ -194,12 +194,17 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
+},{"_css_loader":"../../../../AppData/Roaming/nvm/v14.4.0/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/css/auth.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
 },{"_css_loader":"../../../../AppData/Roaming/nvm/v14.4.0/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/css/main.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"./market.css":"src/css/market.css","./social.css":"src/css/social.css","./..\\img\\chain.jpg":[["chain.c47bbb12.jpg","src/img/chain.jpg"],"src/img/chain.jpg"],"_css_loader":"../../../../AppData/Roaming/nvm/v14.4.0/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../../../../AppData/Roaming/nvm/v14.4.0/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./market.css":"src/css/market.css","./social.css":"src/css/social.css","./auth.css":"src/css/auth.css","./..\\img\\chain.jpg":[["chain.c47bbb12.jpg","src/img/chain.jpg"],"src/img/chain.jpg"],"_css_loader":"../../../../AppData/Roaming/nvm/v14.4.0/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../../../../AppData/Roaming/nvm/v14.4.0/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -227,7 +232,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58035" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54272" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -404,4 +409,4 @@ function hmrAcceptRun(bundle, id) {
   }
 }
 },{}]},{},["../../../../AppData/Roaming/nvm/v14.4.0/node_modules/parcel-bundler/src/builtins/hmr-runtime.js"], null)
-//# sourceMappingURL=main.1603664a.js.map
+//# sourceMappingURL=/main.1603664a.js.map
