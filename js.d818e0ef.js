@@ -2735,23 +2735,60 @@ const app = new _App.default({
 
     (0, _constants.$i)('menu-bars').addEventListener('click', toggleNav);
     (0, _constants.$i)('nav').addEventListener('click', toggleNav);
+    /**
+     * POC and testing code, needs modularising
+     * \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
+     */
+    //debugger;
 
-    const loaderHandler = el => {
-      const originalText = el.parentNode.childNodes[3].innerText;
-      const icon = el.parentElement.childNodes[1];
-      el.hidden = false;
-      icon.style.visibility = 'hidden';
-      el.parentNode.childNodes[3].innerText = 'Loading';
+    let loginBtn = (0, _constants.$i)('login-btn');
+    let loginLoader = (0, _constants.$i)('auth-btn-loader-login');
+    let loginText = loginLoader.parentNode.childNodes[3];
+    let loginIcon = loginLoader.parentElement.childNodes[1];
+    let logoutBtn = (0, _constants.$i)('logout-btn');
+    let logoutLoader = (0, _constants.$i)('auth-btn-loader-logout');
+    let logoutText = logoutLoader.parentNode.childNodes[3];
+    let logoutIcon = logoutLoader.parentElement.childNodes[1];
+    const loginOriginalText = loginText.innerText;
+
+    const loginBtnHandler = () => {
+      loginLoader.hidden = false;
+      loginIcon.style.visibility = 'hidden';
+      loginText.innerText = 'Loading';
       setTimeout(() => {
-        el.hidden = true;
-        icon.style.visibility = 'visible';
-        el.parentNode.childNodes[3].innerText = originalText;
+        loginLoader.hidden = true;
+        logoutIcon.style.visibility = 'visible';
+        loginIcon.style.visibility = 'hidden';
+        loginText.innerText = loginOriginalText;
+        logoutBtn.style.visibility = 'visible';
+        loginBtn.style.visibility = 'hidden';
       }, 2000);
     };
 
-    (0, _constants.$i)('login-btn').addEventListener('click', () => loaderHandler((0, _constants.$i)('auth-btn-loader-login')));
-    (0, _constants.$i)('logout-btn').addEventListener('click', () => loaderHandler((0, _constants.$i)('auth-btn-loader-logout')));
+    const logoutOriginalText = logoutText.innerText;
+
+    const logoutBtnHandler = () => {
+      logoutLoader.hidden = false;
+      logoutIcon.style.visibility = 'hidden';
+      logoutText.innerText = 'Loading';
+      setTimeout(() => {
+        logoutLoader.hidden = true;
+        loginIcon.style.visibility = 'visible';
+        logoutBtn.style.visibility = 'hidden';
+        logoutText.innerText = logoutOriginalText;
+        logoutBtn.style.visibility = 'hidden';
+        loginBtn.style.visibility = 'visible';
+      }, 2000);
+    };
+
+    loginBtn.addEventListener('click', () => loginBtnHandler());
+    logoutBtn.addEventListener('click', () => logoutBtnHandler());
     overlay.hidden = false;
+    logoutBtn.style.visibility = 'hidden';
+    /** /\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+     * POC and testing code, needs modularising
+     */
+
     self.registerComponent(new _ExampleComponent.default(app.store));
     self.registerPlayer(new _Player.Player(), _constants.$x);
     self.generateTraders(_traders.default);
@@ -2801,7 +2838,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51176" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52444" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
