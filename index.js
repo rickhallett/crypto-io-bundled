@@ -1,24 +1,392 @@
-parcelRequire=function(e,r,t,n){var i,o="function"==typeof parcelRequire&&parcelRequire,u="function"==typeof require&&require;function f(t,n){if(!r[t]){if(!e[t]){var i="function"==typeof parcelRequire&&parcelRequire;if(!n&&i)return i(t,!0);if(o)return o(t,!0);if(u&&"string"==typeof t)return u(t);var c=new Error("Cannot find module '"+t+"'");throw c.code="MODULE_NOT_FOUND",c}p.resolve=function(r){return e[t][1][r]||r},p.cache={};var l=r[t]=new f.Module(t);e[t][0].call(l.exports,p,l,l.exports,this)}return r[t].exports;function p(e){return f(p.resolve(e))}}f.isParcelRequire=!0,f.Module=function(e){this.id=e,this.bundle=f,this.exports={}},f.modules=e,f.cache=r,f.parent=o,f.register=function(r,t){e[r]=[function(e,r){r.exports=t},{}]};for(var c=0;c<t.length;c++)try{f(t[c])}catch(e){i||(i=e)}if(t.length){var l=f(t[t.length-1]);"object"==typeof exports&&"undefined"!=typeof module?module.exports=l:"function"==typeof define&&define.amd?define(function(){return l}):n&&(this[n]=l)}if(parcelRequire=f,i)throw i;return f}({"zqQt":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=void 0;class t{constructor(){this.log=this.createLog()}createLog(){let t=0;return(e,o={},n=null)=>e instanceof Error?(console.error("".concat((new Date).toISOString(),"-LOG-#").concat(++t," => ").concat(e),o),!1):(console.log("%c".concat((new Date).toISOString(),"-LOG-#").concat(++t," => ").concat(e),"".concat(n?"color:"+n:""),o),!0)}deepEqual(t,e){return JSON.stringify(t)===JSON.stringify(e)}deepClone(){}shallowClone(){}timeout(t){return new Promise(e=>setTimeout(e,t))}async wait(t){return await Promise.all([this.timeout(t/2)],[this.timeout(t/2)])}getRandomInt(t,e){return Math.floor(Math.random()*(e-t)+t)}genRandomToken(){return function t(e,o){return 5===e?o:(o.push(Math.random().toString(36).substring(2,15)),t(++e,o))}(0,[]).join("")}}var e=new t;exports.default=e;
-},{}],"Ox3n":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.$colors=exports.$CRYPTO=exports.$x=exports.keys=exports.$a=exports.$q=exports.$i=void 0;var e=t(require("./Utils.js"));function t(e){return e&&e.__esModule?e:{default:e}}const o=e=>document.getElementById(e);exports.$i=o;const r=e=>document.querySelector(e);exports.$q=r;const s=e=>document.querySelectorAll(e);exports.$a=s;const n={grey:"#696969",limegreen:"#bada55",lightblue:"#7fe5f0",brightred:"#ff0000",pink:"#ff80ed",seablue:"#407294",beige:"#cbcba9",white:"#ffffff",maroon:"#420420",grassgreen:"#065535",lightgrey:"#c0c0c0",yellow:"#ffd700",orange:"#ffa500",darkred:"#800000",limegreen:"#00ff00"};exports.$colors=n;const c={BTC:"btc",DIVI:"divi",NANO:"nano",DOGE:"doge",ETH:"eth",RIPPLE:"ripple"};exports.$CRYPTO=c;let a={$eventKey:{STATE_CHANGE:"stateChange",CRYPTO_BOUGHT:"cryptoBought",STASH_CHANGED:"stashChanged",TRENCH_COAT_CHANGED:"trenchCoatChanged"},$actionKey:{},$mutationKey:{}};exports.keys=a,(()=>{let e=[];Object.keys(a).forEach(t=>{Object.keys(a[t]).map(o=>{if(!e.includes({[o]:a[t][o]}))return e.push(new Object({[o]:a[t][o]}))})}),e.forEach((e,t,o)=>{a.$actionKey[Object.keys(e)[0]]=Object.values(e)[0],a.$mutationKey[Object.keys(e)[0]]=Object.values(e)[0]})})();const l=[];!function t(o){return o>0&&(l.push(e.default.genRandomToken()),t(--o))}(20);const u=(()=>l[e.default.getRandomInt(0,Object.keys(l).length-1)])();exports.$x=u,e.default.log("keys:",a,n.orange),e.default.log("x-token:",u,n.grassgreen);
-},{"./Utils.js":"zqQt"}],"SRUK":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=void 0;var e=t(require("../lib/Utils.js"));function t(e){return e&&e.__esModule?e:{default:e}}const i=e.default.log;var l={init:function(e,t){i("App initialising","lightblue"),e.commit("mutationKey",null)}};exports.default=l;
-},{"../lib/Utils.js":"zqQt"}],"KdrQ":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=void 0;var e=t(require("../lib/Utils.js"));function t(e){return e&&e.__esModule?e:{default:e}}const r=e.default.log;var u={ex:(e,t)=>e};exports.default=u;
-},{"../lib/Utils.js":"zqQt"}],"cZ0U":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=void 0;class e{constructor(){this.events=[]}subscribe(e,t){return this.events.hasOwnProperty(e)||(this.events[e]=[]),this.events[e].push(t)}publish(e,t={}){if(!this.events.hasOwnProperty(e))throw new Error("EventManager does not have ".concat(e," subscribed"));return this.events[e].map(e=>e(t))}}exports.default=e;
-},{}],"sAAF":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=void 0;class t{constructor({actions:t,mutations:o,state:e,events:s}){const n=this;n.actions=t,n.mutations=o,n.events=s,n.previousStateCache={},n.state=new Proxy(e||{},{set:function(t,o,e){return t[o]=e,n.previousStateCache[o]=e,console.log("".concat($eventKey.STATE_CHANGE,": ").concat(o,":"),e),n.events.publish($eventKey.STATE_CHANGE),!0}})}dispatch(t,o){return"function"!=typeof this.actions[t]?(console.warn("".concat(t," is not a registered action")),!1):(console.groupCollapsed("ACTION: ".concat(t," ").concat(Date.now())),this.actions[t](this,o),console.groupEnd(),!0)}commit(t,o){if("function"!=typeof this.mutations[t])return console.warn("".concat(this.mutations[t]," is not a registered mutation")),!1;console.groupCollapsed("MUTATION: ".concat(t," ").concat(Date.now()));const e=this.mutations[t](this.state,o);return this.state=Object.assign(this.state,e),console.groupEnd(),!0}}exports.default=t;
-},{}],"EIwg":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=void 0;var e=s(require("../state/Store.js")),t=require("../lib/constants.js");function s(e){return e&&e.__esModule?e:{default:e}}class r{constructor(s){this.render=this.render||function(){},s.store instanceof e.default&&s.store.events.subscribe(t.keys.$eventKey.STATE_CHANGE,()=>this.render()),s.hasOwnProperty("element")&&(this.element=s.element),s.hasOwnProperty("elements")&&(this.elements=s.elements)}}exports.default=r;
-},{"../state/Store.js":"sAAF","../lib/constants.js":"Ox3n"}],"orV1":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=void 0;var e=t(require("./BaseComponent.js"));function t(e){return e&&e.__esModule?e:{default:e}}class r extends e.default{constructor(e){super({store:e,elements:{}}),this.render()}render(){}}exports.default=r;
-},{"./BaseComponent.js":"EIwg"}],"lY9v":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=void 0;class t{constructor({store:t,components:e,$x:s,init:r}){this.store=t,this.components=e,this.$x=s,this.init=r,this.player=null}registerComponent(t,e){this.components.push(t)}registerPlayer(t,e){if(e===this.$x)return this.player=t;throw new Error("Unauthorised!")}}exports.default=t;
-},{}],"o0i1":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.Player=void 0;var e=require("../lib/constants.js");class t{constructor(t){let s=new Proxy({},{set:(s,o,r)=>{const a=s[o];s[o]=r,t.events.publish(e.keys.$eventKey.STASH_CHANGED,{prop:o,val:val,oldValue:a})}}),o=new Proxy([],{set:(s,o,r)=>{const a=s[o];s[o]=value,t.events.publish(e.keys.$eventKey.TRENCH_COAT_CHANGED,{prop:o,val:r,oldValue:a})}});this.stash=this.getStashMods(s),this.trenchCoat=this.getTrenchCoatMods(o),this.stash.set(2e3,e.$x),this.trenchCoat.set(new Array(100),e.$x)}getStashMods(t){return{inc:(s,o)=>o==e.$x?t+=s:void 0,dec:(s,o)=>o==e.$x?t-=s:void 0,set:(s,o)=>o==e.$x?t=s:void 0,get:()=>t}}getTrenchCoatMods(t){return{add:(s,o)=>o==e.$x?t.push(s):void 0,remove:(s,o)=>o==e.$x?t.splice(t.indexOf(s)):void 0,set:(s,o)=>o==e.$x?t=s:void 0,getCoat:()=>t}}}exports.Player=t;
-},{"../lib/constants.js":"Ox3n"}],"Focm":[function(require,module,exports) {
-"use strict";var e=require("./lib/constants.js"),t=u(require("./lib/utils.js")),a=u(require("./state/actions.js")),s=u(require("./state/mutations.js")),i=u(require("./state/EventManager.js")),n=u(require("./state/Store.js")),o=u(require("./components/BaseComponent.js")),r=u(require("./components/ExampleComponent.js")),l=u(require("./App.js")),c=require("./models/Player.js");function u(e){return e&&e.__esModule?e:{default:e}}console.time("boot-time");const d=new l.default({store:new n.default({actions:a.default,mutations:s.default,events:new i.default}),components:[],$x:e.$x,init:t=>{const a=(0,e.$i)("overlay"),s=(0,e.$i)("menu-bars"),i=((0,e.$i)("nav"),[(0,e.$i)("nav-1"),(0,e.$i)("nav-2"),(0,e.$i)("nav-3"),(0,e.$i)("nav-4"),(0,e.$i)("nav-5"),(0,e.$i)("nav-6")]),n=()=>{s.classList.toggle("change"),a.classList.toggle("overlay-active"),a.classList.contains("overlay-active")?(i.forEach((e,t)=>e.classList.replace("nav-".concat(t+1,"-slide-out"),"nav-".concat(t+1,"-slide-in"))),a.classList.replace("overlay-slide-out","overlay-slide-in")):(i.forEach((e,t)=>e.classList.replace("nav-".concat(t+1,"-slide-in"),"nav-".concat(t+1,"-slide-out"))),a.classList.replace("overlay-slide-in","overlay-slide-out"))};(0,e.$i)("menu-bars").addEventListener("click",n),(0,e.$i)("nav").addEventListener("click",n),a.hidden=!1,t.registerComponent(new r.default(d.store)),t.registerPlayer(new c.Player,e.$x)}});window.onload=(()=>d.init(d)),console.timeEnd("boot-time"),t.default.log("App:",d,"#bada55");
-},{"./lib/constants.js":"Ox3n","./lib/utils.js":"zqQt","./state/actions.js":"SRUK","./state/mutations.js":"KdrQ","./state/EventManager.js":"cZ0U","./state/Store.js":"sAAF","./components/BaseComponent.js":"EIwg","./components/ExampleComponent.js":"orV1","./App.js":"lY9v","./models/Player.js":"o0i1"}]},{},["Focm"], null)
+// modules are defined as an array
+// [ module function, map of requires ]
+//
+// map of requires is short require name -> numeric require
+//
+// anything defined in a previous bundle is accessed via the
+// orig method which is the require for previous bundles
+parcelRequire = (function (modules, cache, entry, globalName) {
+  // Save the require from previous bundle to this closure if any
+  var previousRequire = typeof parcelRequire === 'function' && parcelRequire;
+  var nodeRequire = typeof require === 'function' && require;
+
+  function newRequire(name, jumped) {
+    if (!cache[name]) {
+      if (!modules[name]) {
+        // if we cannot find the module within our internal map or
+        // cache jump to the current global require ie. the last bundle
+        // that was added to the page.
+        var currentRequire = typeof parcelRequire === 'function' && parcelRequire;
+        if (!jumped && currentRequire) {
+          return currentRequire(name, true);
+        }
+
+        // If there are other bundles on this page the require from the
+        // previous one is saved to 'previousRequire'. Repeat this as
+        // many times as there are bundles until the module is found or
+        // we exhaust the require chain.
+        if (previousRequire) {
+          return previousRequire(name, true);
+        }
+
+        // Try the node require function if it exists.
+        if (nodeRequire && typeof name === 'string') {
+          return nodeRequire(name);
+        }
+
+        var err = new Error('Cannot find module \'' + name + '\'');
+        err.code = 'MODULE_NOT_FOUND';
+        throw err;
+      }
+
+      localRequire.resolve = resolve;
+      localRequire.cache = {};
+
+      var module = cache[name] = new newRequire.Module(name);
+
+      modules[name][0].call(module.exports, localRequire, module, module.exports, this);
+    }
+
+    return cache[name].exports;
+
+    function localRequire(x){
+      return newRequire(localRequire.resolve(x));
+    }
+
+    function resolve(x){
+      return modules[name][1][x] || x;
+    }
+  }
+
+  function Module(moduleName) {
+    this.id = moduleName;
+    this.bundle = newRequire;
+    this.exports = {};
+  }
+
+  newRequire.isParcelRequire = true;
+  newRequire.Module = Module;
+  newRequire.modules = modules;
+  newRequire.cache = cache;
+  newRequire.parent = previousRequire;
+  newRequire.register = function (id, exports) {
+    modules[id] = [function (require, module) {
+      module.exports = exports;
+    }, {}];
+  };
+
+  var error;
+  for (var i = 0; i < entry.length; i++) {
+    try {
+      newRequire(entry[i]);
+    } catch (e) {
+      // Save first error but execute all entries
+      if (!error) {
+        error = e;
+      }
+    }
+  }
+
+  if (entry.length) {
+    // Expose entry point to Node, AMD or browser globals
+    // Based on https://github.com/ForbesLindesay/umd/blob/master/template.js
+    var mainExports = newRequire(entry[entry.length - 1]);
+
+    // CommonJS
+    if (typeof exports === "object" && typeof module !== "undefined") {
+      module.exports = mainExports;
+
+    // RequireJS
+    } else if (typeof define === "function" && define.amd) {
+     define(function () {
+       return mainExports;
+     });
+
+    // <script>
+    } else if (globalName) {
+      this[globalName] = mainExports;
+    }
+  }
+
+  // Override the current require with this new one
+  parcelRequire = newRequire;
+
+  if (error) {
+    // throw error from earlier, _after updating parcelRequire_
+    throw error;
+  }
+
+  return newRequire;
+})({"../../../../AppData/Roaming/nvm/v14.4.0/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
+
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
+  }
+
+  return bundleURL;
+}
+
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
+
+    if (matches) {
+      return getBaseURL(matches[0]);
+    }
+  }
+
+  return '/';
+}
+
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
+}
+
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"../../../../AppData/Roaming/nvm/v14.4.0/node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
+
+function updateLink(link) {
+  var newLink = link.cloneNode();
+
+  newLink.onload = function () {
+    link.remove();
+  };
+
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
+
+var cssTimeout = null;
+
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
+
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
+      }
+    }
+
+    cssTimeout = null;
+  }, 50);
+}
+
+module.exports = reloadCSS;
+},{"./bundle-url":"../../../../AppData/Roaming/nvm/v14.4.0/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"../../../../AppData/Roaming/nvm/v14.4.0/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+var global = arguments[3];
+var OVERLAY_ID = '__parcel__error__overlay__';
+var OldModule = module.bundle.Module;
+
+function Module(moduleName) {
+  OldModule.call(this, moduleName);
+  this.hot = {
+    data: module.bundle.hotData,
+    _acceptCallbacks: [],
+    _disposeCallbacks: [],
+    accept: function (fn) {
+      this._acceptCallbacks.push(fn || function () {});
+    },
+    dispose: function (fn) {
+      this._disposeCallbacks.push(fn);
+    }
+  };
+  module.bundle.hotData = null;
+}
+
+module.bundle.Module = Module;
+var checkedAssets, assetsToAccept;
+var parent = module.bundle.parent;
+
+if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
+  var hostname = "" || location.hostname;
+  var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56168" + '/');
+
+  ws.onmessage = function (event) {
+    checkedAssets = {};
+    assetsToAccept = [];
+    var data = JSON.parse(event.data);
+
+    if (data.type === 'update') {
+      var handled = false;
+      data.assets.forEach(function (asset) {
+        if (!asset.isNew) {
+          var didAccept = hmrAcceptCheck(global.parcelRequire, asset.id);
+
+          if (didAccept) {
+            handled = true;
+          }
+        }
+      }); // Enable HMR for CSS by default.
+
+      handled = handled || data.assets.every(function (asset) {
+        return asset.type === 'css' && asset.generated.js;
+      });
+
+      if (handled) {
+        console.clear();
+        data.assets.forEach(function (asset) {
+          hmrApply(global.parcelRequire, asset);
+        });
+        assetsToAccept.forEach(function (v) {
+          hmrAcceptRun(v[0], v[1]);
+        });
+      } else if (location.reload) {
+        // `location` global exists in a web worker context but lacks `.reload()` function.
+        location.reload();
+      }
+    }
+
+    if (data.type === 'reload') {
+      ws.close();
+
+      ws.onclose = function () {
+        location.reload();
+      };
+    }
+
+    if (data.type === 'error-resolved') {
+      console.log('[parcel] ✨ Error resolved');
+      removeErrorOverlay();
+    }
+
+    if (data.type === 'error') {
+      console.error('[parcel] 🚨  ' + data.error.message + '\n' + data.error.stack);
+      removeErrorOverlay();
+      var overlay = createErrorOverlay(data);
+      document.body.appendChild(overlay);
+    }
+  };
+}
+
+function removeErrorOverlay() {
+  var overlay = document.getElementById(OVERLAY_ID);
+
+  if (overlay) {
+    overlay.remove();
+  }
+}
+
+function createErrorOverlay(data) {
+  var overlay = document.createElement('div');
+  overlay.id = OVERLAY_ID; // html encode message and stack trace
+
+  var message = document.createElement('div');
+  var stackTrace = document.createElement('pre');
+  message.innerText = data.error.message;
+  stackTrace.innerText = data.error.stack;
+  overlay.innerHTML = '<div style="background: black; font-size: 16px; color: white; position: fixed; height: 100%; width: 100%; top: 0px; left: 0px; padding: 30px; opacity: 0.85; font-family: Menlo, Consolas, monospace; z-index: 9999;">' + '<span style="background: red; padding: 2px 4px; border-radius: 2px;">ERROR</span>' + '<span style="top: 2px; margin-left: 5px; position: relative;">🚨</span>' + '<div style="font-size: 18px; font-weight: bold; margin-top: 20px;">' + message.innerHTML + '</div>' + '<pre>' + stackTrace.innerHTML + '</pre>' + '</div>';
+  return overlay;
+}
+
+function getParents(bundle, id) {
+  var modules = bundle.modules;
+
+  if (!modules) {
+    return [];
+  }
+
+  var parents = [];
+  var k, d, dep;
+
+  for (k in modules) {
+    for (d in modules[k][1]) {
+      dep = modules[k][1][d];
+
+      if (dep === id || Array.isArray(dep) && dep[dep.length - 1] === id) {
+        parents.push(k);
+      }
+    }
+  }
+
+  if (bundle.parent) {
+    parents = parents.concat(getParents(bundle.parent, id));
+  }
+
+  return parents;
+}
+
+function hmrApply(bundle, asset) {
+  var modules = bundle.modules;
+
+  if (!modules) {
+    return;
+  }
+
+  if (modules[asset.id] || !bundle.parent) {
+    var fn = new Function('require', 'module', 'exports', asset.generated.js);
+    asset.isNew = !modules[asset.id];
+    modules[asset.id] = [fn, asset.deps];
+  } else if (bundle.parent) {
+    hmrApply(bundle.parent, asset);
+  }
+}
+
+function hmrAcceptCheck(bundle, id) {
+  var modules = bundle.modules;
+
+  if (!modules) {
+    return;
+  }
+
+  if (!modules[id] && bundle.parent) {
+    return hmrAcceptCheck(bundle.parent, id);
+  }
+
+  if (checkedAssets[id]) {
+    return;
+  }
+
+  checkedAssets[id] = true;
+  var cached = bundle.cache[id];
+  assetsToAccept.push([bundle, id]);
+
+  if (cached && cached.hot && cached.hot._acceptCallbacks.length) {
+    return true;
+  }
+
+  return getParents(global.parcelRequire, id).some(function (id) {
+    return hmrAcceptCheck(global.parcelRequire, id);
+  });
+}
+
+function hmrAcceptRun(bundle, id) {
+  var cached = bundle.cache[id];
+  bundle.hotData = {};
+
+  if (cached) {
+    cached.hot.data = bundle.hotData;
+  }
+
+  if (cached && cached.hot && cached.hot._disposeCallbacks.length) {
+    cached.hot._disposeCallbacks.forEach(function (cb) {
+      cb(bundle.hotData);
+    });
+  }
+
+  delete bundle.cache[id];
+  bundle(id);
+  cached = bundle.cache[id];
+
+  if (cached && cached.hot && cached.hot._acceptCallbacks.length) {
+    cached.hot._acceptCallbacks.forEach(function (cb) {
+      cb();
+    });
+
+    return true;
+  }
+}
+},{}]},{},["../../../../AppData/Roaming/nvm/v14.4.0/node_modules/parcel-bundler/src/builtins/hmr-runtime.js"], null)
 //# sourceMappingURL=/index.js.map

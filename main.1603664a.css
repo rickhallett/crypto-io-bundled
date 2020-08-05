@@ -242,6 +242,10 @@
 .auth-btn-loader {
     width: 22%;
 }
+
+i.fas.fa-sign-out-alt {
+    transform: rotate(180deg);
+}
 @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300;400;600&display=swap');
 
 :root {

@@ -2736,13 +2736,21 @@ const app = new _App.default({
     (0, _constants.$i)('menu-bars').addEventListener('click', toggleNav);
     (0, _constants.$i)('nav').addEventListener('click', toggleNav);
 
-    const loaderHandler = target => {
-      target.hidden = false;
-      setTimeout(() => target.hidden = true, 2000);
+    const loaderHandler = (e, el) => {
+      const originalText = el.parentNode.childNodes[3].innerText;
+      el.hidden = false;
+      const icon = el.parentElement.childNodes[1];
+      icon.style.visibility = 'hidden';
+      el.parentNode.childNodes[3].innerText = 'Loading';
+      setTimeout(() => {
+        el.hidden = true;
+        icon.style.visibility = 'visible';
+        el.parentNode.childNodes[3].innerText = originalText;
+      }, 2000);
     };
 
-    (0, _constants.$i)('login-btn').addEventListener('click', () => loaderHandler((0, _constants.$i)('auth-btn-loader-login')));
-    (0, _constants.$i)('logout-btn').addEventListener('click', () => loaderHandler((0, _constants.$i)('auth-btn-loader-logout')));
+    (0, _constants.$i)('login-btn').addEventListener('click', (e, el) => loaderHandler(e, (0, _constants.$i)('auth-btn-loader-login')));
+    (0, _constants.$i)('logout-btn').addEventListener('click', (e, el) => loaderHandler(e, (0, _constants.$i)('auth-btn-loader-logout')));
     overlay.hidden = false;
     self.registerComponent(new _ExampleComponent.default(app.store));
     self.registerPlayer(new _Player.Player(), _constants.$x);
@@ -2755,8 +2763,9 @@ window.onload = () => {
   app.init(app);
   console.timeEnd('boot-time');
 
-  _utils.default.log('App:', app, '#bada55'); // window.location.href = '/#social';
+  _utils.default.log('App:', app, '#bada55');
 
+  window.$i = _constants.$i; // window.location.href = '/#social';
 }; // CurrencyConverter testing
 // var myBitcoins = new BTC(100, app.store);
 // var myDivi = myBitcoins.convertTo($CRYPTO.DIVI, myBitcoins);
@@ -2792,7 +2801,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54272" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50274" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
