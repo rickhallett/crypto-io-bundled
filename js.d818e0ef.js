@@ -2747,9 +2747,8 @@ window.onload = () => {
   app.init(app);
   console.timeEnd('boot-time');
 
-  _utils.default.log('App:', app, '#bada55');
+  _utils.default.log('App:', app, '#bada55'); // window.location.href = '/#social';
 
-  window.location.href = '/#social';
 }; // CurrencyConverter testing
 // var myBitcoins = new BTC(100, app.store);
 // var myDivi = myBitcoins.convertTo($CRYPTO.DIVI, myBitcoins);
@@ -2785,7 +2784,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54642" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58035" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
